@@ -5,11 +5,44 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
+from bs4 import BeautifulSoup
+from lxml import html, etree
+import pandas as pd
 import urllib.parse
+import requests
 import time
 import os
 
 def title_to_link(title):
+    url = "https://libgen.is/search.php?&"
+    params = {
+        'req': title,
+        'view': 'simple',
+        'sort': 'extension',
+        'sortmode': 'DESC'
+    }
+    url += urllib.parse.urlencode(params)
+    resp = requests.get(url)
+    soup = BeautifulSoup(resp.text, 'html.parser')
+    table = soup.find_all('table')[2]
+    for e in table:
+        try:
+            file_type = e.find_all('td')[8].text
+            if file_type == "pdf":
+                links = e.find_all('td')[2].find_all('a')
+                for link in links:
+                    # print(link['href'])
+                    if 'book' in link['href']:
+                        book_code = link['href'].split('=')[1]
+                        new_url = "http://library.lol/main/" + book_code
+                break
+        except:
+            pass
+
+    return new_url
+
+
+def title_to_link_old(title):
 
     timeout = 6
 
@@ -73,5 +106,5 @@ def title_to_link(title):
 
 
 if __name__ == "__main__":
-    title = 'nonlinear dynamics and chaos strogatz'
+    title = 'naming and necessity'
     print(title_to_link(title))
