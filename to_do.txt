@@ -1,0 +1,19 @@
+o-O-o         o-o           
+  |           |  \          
+  |   o-o     |   O o-o     
+  |   | |     |  /  | |     
+  o   o-o     o-o   o-o     
+                            
+                            
+1) Run through rows, checking for basic properties (author matches, pdf extension, etc.)
+2) Possibly add alternative pdf sources
+3) Setup Flask Web Hooks
+4) Throw error when no match is found, but return titles from author if found
+5) Twilio integration
+6) Set up database (mongo db)
+7) Search functionality for database (search keywords in previously retrieved pdfs)
+
+
+
+
+
