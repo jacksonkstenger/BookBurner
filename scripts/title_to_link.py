@@ -15,6 +15,11 @@ import os
 
 
 def title_to_link(title):
+
+    # If the google search returned a title with the word book, remove "book"
+    if title[-4:] == "book":
+        title = title[:-5]
+
     print("Title: {}".format(title))
     url = "https://libgen.is/search.php?&"
     params = {
@@ -109,5 +114,5 @@ def title_to_link_old(title):
 
 
 if __name__ == "__main__":
-    title = 'the elements of statistical learning'
+    title = 'markowitz portfolio selection book'
     print(title_to_link(title))
