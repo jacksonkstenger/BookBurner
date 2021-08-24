@@ -17,8 +17,11 @@ import os
 def title_to_link(title):
 
     # If the google search returned a title with the word book, remove "book"
-    if title[-4:] == "book":
-        title = title[:-5]
+    # if title[-4:] == "book":
+    #     title = title[:-5]
+    title = title.replace('cover','')
+    title = title.replace('audiobook','')
+    title = title.replace('book','')
 
     print("Title: {}".format(title))
     url = "https://libgen.is/search.php?&"
@@ -114,5 +117,5 @@ def title_to_link_old(title):
 
 
 if __name__ == "__main__":
-    title = 'markowitz portfolio selection book'
+    title = 'neal stephenson cryptonomicon audiobook cover'
     print(title_to_link(title))
