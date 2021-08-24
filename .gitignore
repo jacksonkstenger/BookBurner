@@ -1,3 +1,5 @@
 *.ipynb
 .ipynb_checkpoints/
 __pycache__/
+bookburner-venv
+test_message.py

@@ -12,23 +12,34 @@ def index():
     """Default Endpoint"""
     return "Default Endpoint"
 
-
 @app.route("/sms", methods=['GET', 'POST'])
 def sms_reply():
-    """Respond to texts with a custom text response"""
+    """Respond to incoming calls with a simple text message."""
+    # Start our TwiML response
+    resp = MessagingResponse()
 
-    try:
-        # Parse relevant values from the request
-        from_number = request.values.get('From', None)
-        text = request.values.get('Body', None)
+    # Add a message
+    resp.message("The Robots are coming! Head for the hills!")
 
-        # Logic
-        resp = logic(text, from_number)
+    return str(resp)
 
-        return str(resp)
 
-    except TwilioRestException as e:
-        print(e)
+# @app.route("/sms", methods=['GET', 'POST'])
+# def sms_reply():
+#     """Respond to texts with a custom text response"""
+#
+#     try:
+#         # Parse relevant values from the request
+#         from_number = request.values.get('From', None)
+#         text = request.values.get('Body', None)
+#
+#         # Logic
+#         # resp = logic(text, from_number)
+#
+#         return str(resp)
+#
+#     except TwilioRestException as e:
+#         print(e)
 
 
 if __name__ == "__main__":
