@@ -67,7 +67,7 @@ def sms_reply():
             driver.find_element_by_xpath('//*[@id="searchform"]').click()
 
             # Type title into the box
-            driver.find_element_by_xpath('//*[@id="searchform"]').send_keys(title)
+            driver.find_element_by_xpath('//*[@id="searchform"]').send_keys(text)
             # WebDriverWait(driver, timeout).until(element)
 
             # Click the search button
