@@ -1,5 +1,8 @@
+from twilio.twiml.messaging_response import MessagingResponse
+from twilio.base.exceptions import TwilioRestException
 from flask import Flask, request, redirect
 import sys
+import os
 
 from utils import send_text
 from logic import logic
@@ -15,6 +18,7 @@ def index():
 @app.route("/sms", methods=['GET', 'POST'])
 def sms_reply():
     """Respond to incoming calls with a simple text message."""
+
     # Start our TwiML response
     resp = MessagingResponse()
 

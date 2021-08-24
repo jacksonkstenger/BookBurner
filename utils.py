@@ -1,6 +1,8 @@
 from twilio.rest import Client
 from twilio.base.exceptions import TwilioRestException
 
+import os
+
 ACCOUNT_SID = os.environ.get('ACCOUNT_SID', None)
 AUTH_TOKEN = os.environ.get('AUTH_TOKEN', None)
 BOOKBURNER_NUMBER = os.environ.get('BOOKBURNER_NUMBER', None)
