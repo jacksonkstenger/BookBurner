@@ -29,15 +29,18 @@ def sms_reply():
         from_number = request.values.get('From', None)
         text = request.values.get('Body', None)
 
+        print("Received from: {}".format(from_number))
+        print("Text: {}".format(text))
+
         # Add a message
         resp.message("Time to burn some books! I heard you say {}.".format(text))
 
         # Logic
         # resp = logic(text, from_number)
 
-        url = title_to_link(text)
+        # url = title_to_link(text)
         resp.message("Your URL SIR")
-        resp.message(url)
+        # resp.message(url)
 
         return str(resp)
 
