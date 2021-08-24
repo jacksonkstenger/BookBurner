@@ -17,6 +17,7 @@ sys.path.append('scripts/')
 from utils import send_text
 from logic import logic
 from title_to_link import title_to_link
+from image_to_title import image_to_title
 
 app = Flask(__name__)
 
@@ -47,9 +48,11 @@ def sms_reply():
         # Add a message
         resp.message("Time to burn some books! Here's a free version of {}.".format(text))
 
-        # Logic
-        # url = logic(text, from_number)
+        # If an image was attached, get the title of this book
+        if len(media_url) > 0:
+            text = image_to_title(media_url)
 
+        # Get a link to the pdf of this book
         url = title_to_link(text)
         print("FINAL URL: {}", url)
 
