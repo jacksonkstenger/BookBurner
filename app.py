@@ -45,12 +45,12 @@ def sms_reply():
         print("Text: {}".format(text))
         print("Media URL: {}".format(media_url))
 
-        # Add a message
-        resp.message("Time to burn some books! Here's a free version of {}.".format(text))
-
         # If an image was attached, get the title of this book
         if media_url is not None:
             text = image_to_title(media_url)
+
+        # Add a message
+        resp.message("Time to burn some books! Here's a free version of {}.".format(text))
 
         # Get a link to the pdf of this book
         url = title_to_link(text)
