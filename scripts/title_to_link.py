@@ -15,6 +15,7 @@ import os
 
 
 def title_to_link(title):
+    print("Title: {}".format(title))
     url = "https://libgen.is/search.php?&"
     params = {
         'req': title,
@@ -108,5 +109,5 @@ def title_to_link_old(title):
 
 
 if __name__ == "__main__":
-    title = 'naming and necessity'
+    title = 'the elements of statistical learning'
     print(title_to_link(title))

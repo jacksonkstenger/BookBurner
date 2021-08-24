@@ -47,6 +47,7 @@ def sms_reply():
 
         # If an image was attached, get the title of this book
         if media_url is not None:
+            print("Here in the media url None condition")
             text = image_to_title(media_url)
 
         # Add a message
