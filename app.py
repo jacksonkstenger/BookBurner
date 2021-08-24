@@ -19,14 +19,16 @@ def index():
 def sms_reply():
     """Respond to incoming calls with a simple text message."""
 
-    # Start our TwiML response
-    resp = MessagingResponse()
+    try:
+        # Start our TwiML response
+        resp = MessagingResponse()
 
-    # Add a message
-    resp.message("The Robots are coming! Head for the hills!")
+        # Add a message
+        resp.message("The Robots are coming! Head for the hills!")
 
-    return str(resp)
-
+        return str(resp)
+    except TwilioRestException as e:
+        print(e)
 
 # @app.route("/sms", methods=['GET', 'POST'])
 # def sms_reply():
