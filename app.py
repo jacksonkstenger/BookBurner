@@ -6,6 +6,7 @@ import os
 
 from utils import send_text
 from logic import logic
+from title_to_link import title_to_link
 
 app = Flask(__name__)
 
@@ -33,6 +34,10 @@ def sms_reply():
 
         # Logic
         # resp = logic(text, from_number)
+
+        url = title_to_link(text)
+        resp.message("Your URL SIR")
+        resp.message(url)
 
         return str(resp)
 
