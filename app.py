@@ -43,7 +43,7 @@ def sms_reply():
         print("Text: {}".format(text))
 
         # Add a message
-        resp.message("Time to burn some books! I heard you say {}.".format(text))
+        resp.message("Time to burn some books! Here's a free version of {}.".format(text))
 
         # Logic
         # url = logic(text, from_number)
@@ -51,7 +51,7 @@ def sms_reply():
         url = title_to_link(text)
         print("FINAL URL: {}", url)
 
-        resp.message("Your URL sir: {}".format(url))
+        resp.message("{}".format(url))
 
         return str(resp)
 
