@@ -38,9 +38,11 @@ def sms_reply():
         # Parse relevant values from the request
         from_number = request.values.get('From', None)
         text = request.values.get('Body', None)
+        media_url = request.values.get('MediaUrl0', None)
 
         print("Received from: {}".format(from_number))
         print("Text: {}".format(text))
+        print("Media URL: {}".format(media_url))
 
         # Add a message
         resp.message("Time to burn some books! Here's a free version of {}.".format(text))
@@ -57,6 +59,7 @@ def sms_reply():
 
     except TwilioRestException as e:
         print(e)
+        resp.message("I can't find a pdf of this title.")
 
 
 if __name__ == "__main__":
