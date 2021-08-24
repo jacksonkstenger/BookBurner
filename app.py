@@ -15,7 +15,6 @@ import os
 sys.path.append('scripts/')
 
 from utils import send_text
-from logic import logic
 from title_to_link import title_to_link
 from image_to_title import image_to_title
 
@@ -30,9 +29,10 @@ def index():
 
 @app.route("/sms", methods=['GET', 'POST'])
 def sms_reply():
-    """Respond to texts with a custom text response"""
+    """Respond to texts with a custom response"""
 
     try:
+
         # Start our TwiML response
         resp = MessagingResponse()
 
@@ -45,7 +45,7 @@ def sms_reply():
         print("Text: {}".format(text))
         print("Media URL: {}".format(media_url))
 
-        # If an image was attached, get the title of this book
+        # If an image was attached, get the title of the book from the image
         if media_url is not None:
             print("Here in the media url None condition")
             text = image_to_title(media_url)
@@ -63,7 +63,8 @@ def sms_reply():
 
     except TwilioRestException as e:
         print(e)
-        resp.message("I can't find a pdf of this title.")
+        resp.message("I can't find a pdf of this title. Try including more details.")
+        return str(resp)
 
 
 if __name__ == "__main__":
