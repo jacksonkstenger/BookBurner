@@ -11,7 +11,7 @@ import os
 
 def title_to_link(title):
 
-    timeout = 10
+    timeout = 6
 
     try:
         # Using Chrome to access web
@@ -37,11 +37,23 @@ def title_to_link(title):
         WebDriverWait(driver, timeout).until(element)
         driver.find_element_by_xpath('/html/body/table/tbody[2]/tr/td[2]/form/input[2]').click()
 
-        # Click the link of the first book
-        # element = EC.presence_of_element_located((By.XPATH, '//*[@id="4542"]'))
-        element = EC.presence_of_element_located((By.XPATH, '/html/body/table[3]/tbody/tr[2]/td[3]/a[2]'))
-        WebDriverWait(driver, timeout).until(element)
-        driver.find_element_by_xpath('/html/body/table[3]/tbody/tr[2]/td[3]/a[2]').click()
+        # Click the link of the first pdf
+        found = False
+        i = 0
+        while i < 10 and found == False:
+            pdf_element = driver.find_element_by_xpath('/html/body/table[3]/tbody/tr[{}]/td[9]'.format(2+i))
+            if pdf_element.text == "pdf":
+                try:
+                    element = EC.presence_of_element_located((By.XPATH, '/html/body/table[3]/tbody/tr[2]/td[3]/a[2]'))
+                    WebDriverWait(driver, timeout).until(element)
+                    driver.find_element_by_xpath('/html/body/table[3]/tbody/tr[2]/td[3]/a[2]').click()
+                except:
+                    element = EC.presence_of_element_located((By.XPATH, '/html/body/table[3]/tbody/tr[2]/td[3]/a'))
+                    WebDriverWait(driver, timeout).until(element)
+                    driver.find_element_by_xpath('/html/body/table[3]/tbody/tr[2]/td[3]/a').click()
+                found = True
+            else:
+                i += 1
 
         # Click the link to get to pdfs
         element = EC.presence_of_element_located((By.XPATH, '/html/body/table/tbody/tr[2]/td[3]/b/a'))
@@ -61,5 +73,5 @@ def title_to_link(title):
 
 
 if __name__ == "__main__":
-    title = 'nonlinear dynamics and chaos with applications to physics biology chemistry and engineering'
+    title = 'nonlinear dynamics and chaos strogatz'
     print(title_to_link(title))
