@@ -26,6 +26,7 @@ def title_to_link(title):
     resp = requests.get(url)
     soup = BeautifulSoup(resp.text, 'html.parser')
     table = soup.find_all('table')[2]
+    new_url = "I can't find this title."
     for e in table:
         try:
             file_type = e.find_all('td')[8].text
