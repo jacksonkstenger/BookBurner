@@ -15,7 +15,8 @@ def title_to_link(title):
 
     try:
         # Using Chrome to access web
-        DRIVER_PATH = r'/Users/gstenger/Downloads/chromedriver 2'
+        # DRIVER_PATH = r'/Users/gstenger/Downloads/chromedriver 2'
+        DRIVER_PATH = os.environ.get('CHROMEDRIVER_PATH', None)
         driver = webdriver.Chrome(executable_path=DRIVER_PATH)
 
         # Open the website
