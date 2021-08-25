@@ -7,9 +7,13 @@ import cv2
 from pyzbar.pyzbar import decode
 import re
 sys.path.append('../data/')
+import numpy as np
+import urllib
 
 def BarcodeReader(book_url):
-    img = cv2.imread(book_url)
+    req = urllib.request.urlopen(book_url)
+    arr = np.asarray(bytearray(req.read()), dtype=np.uint8)
+    img = cv2.imdecode(arr, -1).imread(book_url)
     detectedBarcodes = decode(img)
     if not detectedBarcodes:
         print("Error")
