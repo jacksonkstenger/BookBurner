@@ -125,6 +125,9 @@ def title_to_link_old(title):
         
         driver.close()
         return final_url
+    except:
+        print('Weird error')
+    return None
 
 if __name__ == "__main__":
     title = 'discourse on method rene descartes'
