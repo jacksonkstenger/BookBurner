@@ -18,7 +18,7 @@ def BarcodeReader(book_url):
     ###arr = np.asarray(bytearray(req.read()), dtype=np.uint8)
     ###img = cv2.imdecode(arr, -1).imread(book_url)
     with requests.Session() as s:
-        s.get(book_url)
+        page = s.get(book_url)
         with open('temp_img.jpg', 'wb') as f:
             f.write(page.content)
     img = np.asarray(Image.open('temp_img.jpg'))
