@@ -17,7 +17,7 @@ sys.path.append('scripts/')
 from utils import send_text
 from title_to_link import title_to_link
 #from image_to_title import image_to_title
-from image_to_title import image_to_title
+from image_to_title_barcode import image_to_title
 
 app = Flask(__name__)
 
