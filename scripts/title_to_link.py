@@ -34,10 +34,10 @@ def title_to_link(title):
     url += urllib.parse.urlencode(params)
     resp = requests.get(url)
     soup = BeautifulSoup(resp.text, 'html.parser')
-    print(resp)
-    print(resp.text)
-    print(soup)
-    print(soup.find_all('table'))
+    #print(resp)
+    #print(resp.text)
+    #print(soup)
+    #print(soup.find_all('table'))
     table = soup.find_all('table')[2]
     
     new_url = "I can't find this title."
