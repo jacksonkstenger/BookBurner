@@ -7,7 +7,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from bs4 import BeautifulSoup
 #from lxml import html#, etree
-import pandas as pd
+#import pandas as pd
 import urllib.parse
 import requests
 import time
@@ -47,7 +47,7 @@ def title_to_link(title):
             if file_type == "pdf":
                 links = e.find_all('td')[2].find_all('a')
                 for link in links:
-                    # print(link['href'])
+                    print(link['href'])
                     if 'book' in link['href']:
                         book_code = link['href'].split('=')[1]
                         new_url = "http://library.lol/main/" + book_code

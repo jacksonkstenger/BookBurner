@@ -18,6 +18,7 @@ def image_to_title(image_url):
 
         # Using Chrome to access web
         DRIVER_PATH = os.environ.get('CHROMEDRIVER_PATH', None)
+        #DRIVER_PATH = r"C:\Users\Jackson\Downloads\chromedriver_win32\chromedriver.exe"
         driver = webdriver.Chrome(executable_path=DRIVER_PATH)
 
         # Open the website
