@@ -66,6 +66,8 @@ def sms_reply():
         print(rf"AUDIO URL: {audio_url}", )
         if url is None:
             url == ""
+        if audio_url is None:
+            audio_url == ""
         print('waddup')
         if (url == "") and (audio_url == ""):
             print('JJ1')
