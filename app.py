@@ -76,10 +76,10 @@ def sms_reply():
             resp.message("{}".format(url))
         elif (url == "") and (audio_url != ""):
             print('JJ3')
-            resp.message(rf"I can't find a pdf of this title. I did find this audio book: {audio_url}")
+            resp.message(rf"I can't find a pdf of this title. I did find this link, it may be an audio book: {audio_url}")
         else:
             print('JJ4')
-            resp.message(rf"{url} (audio version: {audio_url})")
+            resp.message(rf"{url} (possible audio version: {audio_url})")
         print('goodbye')
         return str(resp)
 
