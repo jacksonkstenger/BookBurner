@@ -127,6 +127,7 @@ def title_to_link_old(title):
         return final_url
     except:
         print('Weird error')
+        driver.close()
     return None
 
 if __name__ == "__main__":
