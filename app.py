@@ -73,14 +73,13 @@ def sms_reply():
         elif (url == "") and (audio_url != ""):
             resp.message(rf"I can't find a pdf of this title. I did find this audio book: {audio_url}")
         else:
-            resp.message(rf"{url} (audio version: {audio_url})"
-            
-        #str(resp)
+            resp.message(rf"{url} (audio version: {audio_url})")
+        return str(resp)
 
     except TwilioRestException as e:
         print(e)
         resp.message("I can't find a pdf of this title. Try including more details.")
-        #str(resp)
+        return str(resp)
     return None
 
 if __name__ == "__main__":
