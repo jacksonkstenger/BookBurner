@@ -61,7 +61,7 @@ def sms_reply():
         resp.message("Time to burn some books! Here's a free version of {}.".format(text))
 
         # Get a link to the pdf of this book
-        url = title_to_link(text)
+        url = title_to_link_old(text)#title_to_link(text)
         print(rf"FINAL URL: {url}")
         audio_url = title_to_link_audio(text)
         print(rf"AUDIO URL: {audio_url}", )
