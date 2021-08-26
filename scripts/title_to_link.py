@@ -31,15 +31,19 @@ def title_to_link(title):
         'sort': 'extension',
         'sortmode': 'DESC'
     }
+    print('a')
     url += urllib.parse.urlencode(params)
+    print('b')
     resp = requests.get(url)
+    print('c')
     soup = BeautifulSoup(resp.text, 'html.parser')
+    print('d')
     #print(resp)
     #print(resp.text)
-    #print(soup)
+    print(soup)
     #print(soup.find_all('table'))
     table = soup.find_all('table')[2]
-    
+    print('e')
     new_url = ""#"I can't find this title."
     for e in table:
         try:

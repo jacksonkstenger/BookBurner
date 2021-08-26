@@ -62,9 +62,9 @@ def sms_reply():
 
         # Get a link to the pdf of this book
         url = title_to_link(text)
-        print("FINAL URL: {}", url)
+        print(rf"FINAL URL: {url}")
         audio_url = title_to_link_audio(text)
-        print("AUDIO URL: {}", audio_url)
+        print(rf"AUDIO URL: {audio_url}", )
         
         if (url == "") and (audio_url == ""):
             resp.message("I can't find a pdf of this title. Try including more details.")
