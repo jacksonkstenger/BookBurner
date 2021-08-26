@@ -22,22 +22,25 @@ def BarcodeReader(book_url):
     ###req = urllib.request.urlopen(book_url)
     ###arr = np.asarray(bytearray(req.read()), dtype=np.uint8)
     ###img = cv2.imdecode(arr, -1).imread(book_url)
-    with requests.Session() as s:
-        page = s.get(book_url)
-        with open('temp_img.jpg', 'wb') as f:
-            f.write(page.content)
-    #img = np.asarray(Image.open('temp_img.jpg'))
-    ##img = io.imread(book_url)
-    img = plt.imread('temp_img.jpg')
-    detectedBarcodes = decode(img)
-    if not detectedBarcodes:
-        print("Error")
-    else:
-        for barcode in detectedBarcodes:
-            if barcode.data != "":
-                result = barcode.data
-                return result.decode()
-    return None
+    try:
+        with requests.Session() as s:
+            page = s.get(book_url)
+            with open('temp_img.jpg', 'wb') as f:
+                f.write(page.content)
+        #img = np.asarray(Image.open('temp_img.jpg'))
+        ##img = io.imread(book_url)
+        img = plt.imread('temp_img.jpg')
+        detectedBarcodes = decode(img)
+        if not detectedBarcodes:
+            print("Error")
+        else:
+            for barcode in detectedBarcodes:
+                if barcode.data != "":
+                    result = barcode.data
+                    return result.decode()
+        return None
+    except:
+        return None
 
 def BarcodeLookup(barcode):
     #DRIVER_PATH = os.environ.get('CHROMEDRIVER_PATH', None)
@@ -54,9 +57,12 @@ def BarcodeLookup(barcode):
     #author = re.findall('\nAuthor.*\n',result)[0].replace('\n','')[8:]
     #final_result = re.sub(r'\W+', ' ', title + ' ' + author)
     #return final_result
-    result_dict = meta(barcode)
-    result = result_dict['Title'] + ' ' + ' '.join(result_dict['Authors'])
-    return result
+    try:
+        result_dict = meta(barcode)
+        result = result_dict['Title'] + ' ' + ' '.join(result_dict['Authors'])
+        return result
+    except:
+        return None
     
     
     
