@@ -69,67 +69,67 @@ def title_to_link_old(title):
 
     try:
         # Using Chrome to access web
-        # DRIVER_PATH = r'/Users/gstenger/Downloads/chromedriver 2'
+        ## DRIVER_PATH = r'/Users/gstenger/Downloads/chromedriver 2'
+        ##DRIVER_PATH = r"C:\Users\Jackson\Downloads\chromedriver_win32\chromedriver.exe"
         DRIVER_PATH = os.environ.get('CHROMEDRIVER_PATH', None)
+        title = title.replace('cover','')
+        title = title.replace('audiobook','')
+        title = title.replace('book','')
+
+        print("Title2: {}".format(title))
+        url = "https://libgen.is/search.php?&"
+        params = {
+            'req': title,
+            'view': 'simple',
+            'sort': 'extension',
+            'sortmode': 'DESC'
+        }
+        url += urllib.parse.urlencode(params)
+        
+        
         driver = webdriver.Chrome(executable_path=DRIVER_PATH)
-
+        
         # Open the website
-        driver.get('https://libgen.is/')
-
-        # Click the search box
-        element = EC.presence_of_element_located((By.XPATH, '//*[@id="searchform"]'))
-        WebDriverWait(driver, timeout).until(element)
-        driver.find_element_by_xpath('//*[@id="searchform"]').click()
-
-        # Type title into the box
-        driver.find_element_by_xpath('//*[@id="searchform"]').send_keys(title)
-        # WebDriverWait(driver, timeout).until(element)
-
-        # Click the search button
-        element = EC.presence_of_element_located((By.XPATH, '/html/body/table/tbody[2]/tr/td[2]/form/input[2]'))
-        # element = driver.find_element_by_xpath('/html/body/table/tbody[2]/tr/td[2]/form/input[2]')
-        WebDriverWait(driver, timeout).until(element)
-        driver.find_element_by_xpath('/html/body/table/tbody[2]/tr/td[2]/form/input[2]').click()
-
+        driver.get(url)
+        
         # Click the link of the first pdf
+        file_type_lst = ['pdf','epub']
+        
         found = False
-        i = 0
-        while i < 10 and found == False:
+        for i in range(10):
             pdf_element = driver.find_element_by_xpath('/html/body/table[3]/tbody/tr[{}]/td[9]'.format(2+i))
-            if pdf_element.text == "pdf":
+            if pdf_element.text in file_type_lst:
                 try:
                     element = EC.presence_of_element_located((By.XPATH, '/html/body/table[3]/tbody/tr[2]/td[3]/a[2]'))
                     WebDriverWait(driver, timeout).until(element)
-                    driver.find_element_by_xpath('/html/body/table[3]/tbody/tr[2]/td[3]/a[2]').click()
+                    link = driver.find_element_by_xpath('/html/body/table[3]/tbody/tr[2]/td[3]/a[2]').get_attribute("href")
+                    driver.get(link)
+                    found = True
                 except:
+                    print('fail1')
+                try:
                     element = EC.presence_of_element_located((By.XPATH, '/html/body/table[3]/tbody/tr[2]/td[3]/a'))
                     WebDriverWait(driver, timeout).until(element)
-                    driver.find_element_by_xpath('/html/body/table[3]/tbody/tr[2]/td[3]/a').click()
-                found = True
-            else:
-                i += 1
-
+                    link = driver.find_element_by_xpath('/html/body/table[3]/tbody/tr[2]/td[3]/a').get_attribute('href')
+                    driver.get(link)
+                    found = True
+                except:
+                    print('fail2')
+                if found:
+                    break
+        
         # Click the link to get to pdfs
         element = EC.presence_of_element_located((By.XPATH, '/html/body/table/tbody/tr[2]/td[3]/b/a'))
         WebDriverWait(driver, timeout).until(element)
-        driver.find_element_by_xpath('/html/body/table/tbody/tr[2]/td[3]/b/a').click()
+        final_url = driver.find_element_by_xpath('/html/body/table/tbody/tr[2]/td[3]/b/a').get_attribute("href")#.click()
 
-        # Click the final link woohoo!
-        element = EC.presence_of_element_located((By.XPATH, '//*[@id="download"]/h2/a'))
-        WebDriverWait(driver, timeout).until(element)
-        final_element = driver.find_element_by_xpath('//*[@id="download"]/h2/a')
-        final_url = final_element.get_attribute("href")
         driver.close()
         return final_url
-
-    except Exception as e:
-        driver.close()
-        print(e)
 
 
 if __name__ == "__main__":
     title = 'discourse on method rene descartes'
-    print(title_to_link(title))
+    print(title_to_link_old(title))
 
     
     
