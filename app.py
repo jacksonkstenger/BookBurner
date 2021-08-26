@@ -69,6 +69,8 @@ def sms_reply():
         if audio_url is None:
             audio_url == ""
         print('waddup')
+        print(url)
+        print(audio_url)
         if (url == "") and (audio_url == ""):
             print('JJ1')
             resp.message("I can't find a pdf of this title. Try including more details.")
