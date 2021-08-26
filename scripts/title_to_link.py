@@ -64,9 +64,9 @@ def title_to_link(title):
 
 
 def title_to_link_old(title):
-
+    
     timeout = 6
-
+    
     try:
         # Using Chrome to access web
         ## DRIVER_PATH = r'/Users/gstenger/Downloads/chromedriver 2'
@@ -75,7 +75,7 @@ def title_to_link_old(title):
         title = title.replace('cover','')
         title = title.replace('audiobook','')
         title = title.replace('book','')
-
+        
         print("Title2: {}".format(title))
         url = "https://libgen.is/search.php?&"
         params = {
@@ -93,7 +93,7 @@ def title_to_link_old(title):
         driver.get(url)
         
         # Click the link of the first pdf
-        file_type_lst = ['pdf','epub']
+        file_type_lst = ['pdf','epub','txt']
         
         found = False
         for i in range(10):
@@ -122,14 +122,10 @@ def title_to_link_old(title):
         element = EC.presence_of_element_located((By.XPATH, '/html/body/table/tbody/tr[2]/td[3]/b/a'))
         WebDriverWait(driver, timeout).until(element)
         final_url = driver.find_element_by_xpath('/html/body/table/tbody/tr[2]/td[3]/b/a').get_attribute("href")#.click()
-
+        
         driver.close()
         return final_url
-
 
 if __name__ == "__main__":
     title = 'discourse on method rene descartes'
     print(title_to_link_old(title))
-
-    
-    
