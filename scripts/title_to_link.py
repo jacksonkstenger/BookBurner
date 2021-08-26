@@ -91,7 +91,7 @@ def title_to_link_old(title):
         
         # Open the website
         driver.get(url)
-        print(driver.text)
+        print(str(driver.page_source)[:1000])
         # Click the link of the first pdf
         file_type_lst = ['pdf','epub','txt']
         
