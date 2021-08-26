@@ -3,7 +3,7 @@ from selenium.webdriver.common.keys import Keys
 import time
 import os
 import sys
-import cv2
+#import cv2
 from pyzbar.pyzbar import decode
 import re
 sys.path.append('../data/')
