@@ -16,6 +16,7 @@ import numpy as np
 import urllib
 #from skimage import io
 import matplotlib.pyplot as plt
+from isbntools.app import meta
 
 def BarcodeReader(book_url):
     ###req = urllib.request.urlopen(book_url)
@@ -39,20 +40,26 @@ def BarcodeReader(book_url):
     return None
 
 def BarcodeLookup(barcode):
-    DRIVER_PATH = os.environ.get('CHROMEDRIVER_PATH', None)
-    #DRIVER_PATH = r"C:\Users\Jackson\Downloads\chromedriver_win32\chromedriver.exe"
-    driver = webdriver.Chrome(executable_path=DRIVER_PATH)
-    url = 'https://www.barcodelookup.com/' + barcode
-    driver.get(url)
-    timeout = 10
-    element = EC.presence_of_element_located((By.XPATH, '/html/body/div[1]/section[2]/div/div/div[2]'))
-    WebDriverWait(driver, timeout).until(element)
-    result = driver.find_element_by_xpath('/html/body/div[1]/section[2]/div/div/div[2]').text
-    driver.close()
-    title = result.split('\n')[1]
-    author = re.findall('\nAuthor.*\n',result)[0].replace('\n','')[8:]
-    final_result = re.sub(r'\W+', ' ', title + ' ' + author)
-    return final_result
+    #DRIVER_PATH = os.environ.get('CHROMEDRIVER_PATH', None)
+    ##DRIVER_PATH = r"C:\Users\Jackson\Downloads\chromedriver_win32\chromedriver.exe"
+    #driver = webdriver.Chrome(executable_path=DRIVER_PATH)
+    #url = 'https://www.barcodelookup.com/' + barcode
+    #driver.get(url)
+    #timeout = 10
+    #element = EC.presence_of_element_located((By.XPATH, '/html/body/div[1]/section[2]/div/div/div[2]'))
+    #WebDriverWait(driver, timeout).until(element)
+    #result = driver.find_element_by_xpath('/html/body/div[1]/section[2]/div/div/div[2]').text
+    #driver.close()
+    #title = result.split('\n')[1]
+    #author = re.findall('\nAuthor.*\n',result)[0].replace('\n','')[8:]
+    #final_result = re.sub(r'\W+', ' ', title + ' ' + author)
+    #return final_result
+    result_dict = meta(barcode)
+    result = result_dict['Title'] + ' ' + ' '.join(result_dict['Authors'])
+    return result
+    
+    
+    
     
 def image_to_title(image_url):
     barcode = BarcodeReader(image_url)
