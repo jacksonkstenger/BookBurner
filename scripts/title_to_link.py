@@ -6,7 +6,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from bs4 import BeautifulSoup
-from lxml import html, etree
+#from lxml import html#, etree
 import pandas as pd
 import urllib.parse
 import requests
