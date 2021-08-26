@@ -45,10 +45,11 @@ def title_to_link(title):
     table = soup.find_all('table')[2]
     print('e')
     new_url = ""#"I can't find this title."
+    file_type_lst = ['pdf','epub']
     for e in table:
         try:
             file_type = e.find_all('td')[8].text
-            if file_type == "pdf":
+            if file_type in file_type_lst:
                 links = e.find_all('td')[2].find_all('a')
                 for link in links:
                     print(link['href'])
