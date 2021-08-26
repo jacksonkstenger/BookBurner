@@ -109,10 +109,11 @@ def title_to_link_old(title):
         WebDriverWait(driver, timeout).until(element)
         final_element = driver.find_element_by_xpath('//*[@id="download"]/h2/a')
         final_url = final_element.get_attribute("href")
-
+        driver.close()
         return final_url
 
     except Exception as e:
+        driver.close()
         print(e)
 
 
