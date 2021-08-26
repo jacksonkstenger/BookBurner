@@ -71,13 +71,14 @@ def sms_reply():
         print('waddup')
         print(url)
         print(audio_url)
-        if (url == "") and (audio_url == ""):
+        #if (url == "") and (audio_url == ""):
+        if (not url) and (not audio_url):
             print('JJ1')
             resp.message("I can't find a pdf of this title. Try including more details.")
-        elif (url != "") and (audio_url == ""):
+        elif (not not url) and (not audio_url):
             print('JJ2')
             resp.message("{}".format(url))
-        elif (url == "") and (audio_url != ""):
+        elif (not url) and (not not audio_url):
             print('JJ3')
             resp.message(rf"I can't find a pdf of this title. I did find this link, it may be an audio book: {audio_url}")
         else:
