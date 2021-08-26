@@ -50,13 +50,12 @@ def sms_reply():
         if media_url is not None:
             print("Here in the media url None condition")
             text = image_to_title(media_url)
+            print('zzz')
             if text == None:
                 text = image_to_title_og(media_url)
-            #if text == None:
-            #    #resp.message("I can't find a pdf of this title. Try including more details.")
-            #    #return str(resp)
-                
-
+            print('yyy')
+        print('text')
+        
         # Add a message
         resp.message("Time to burn some books! Here's a free version of {}.".format(text))
 
