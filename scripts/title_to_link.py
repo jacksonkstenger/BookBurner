@@ -23,7 +23,7 @@ def title_to_link(title):
     title = title.replace('audiobook','')
     title = title.replace('book','')
 
-    print("Title: {}".format(title))
+    print("Title2: {}".format(title))
     url = "https://libgen.is/search.php?&"
     params = {
         'req': title,
@@ -34,7 +34,12 @@ def title_to_link(title):
     url += urllib.parse.urlencode(params)
     resp = requests.get(url)
     soup = BeautifulSoup(resp.text, 'html.parser')
+    print(resp)
+    print(resp.text)
+    print(soup)
+    print(soup.find_all('table'))
     table = soup.find_all('table')[2]
+    
     new_url = "I can't find this title."
     for e in table:
         try:
@@ -118,5 +123,8 @@ def title_to_link_old(title):
 
 
 if __name__ == "__main__":
-    title = 'neal stephenson cryptonomicon audiobook cover'
+    title = 'discourse on method rene descartes'
     print(title_to_link(title))
+
+    
+    
