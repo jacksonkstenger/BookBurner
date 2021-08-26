@@ -12,10 +12,15 @@ import urllib
 from skimage import io
 
 def BarcodeReader(book_url):
-    #req = urllib.request.urlopen(book_url)
-    #arr = np.asarray(bytearray(req.read()), dtype=np.uint8)
-    #img = cv2.imdecode(arr, -1).imread(book_url)
-    img = io.imread(book_url)
+    ###req = urllib.request.urlopen(book_url)
+    ###arr = np.asarray(bytearray(req.read()), dtype=np.uint8)
+    ###img = cv2.imdecode(arr, -1).imread(book_url)
+    with requests.Session() as s:
+        s.get(book_url)
+        with open('temp_img.jpg', 'wb') as f:
+            f.write(page.content)
+    img = np.asarray(Image.open('temp_img.jpg'))
+    #img = io.imread(book_url)
     detectedBarcodes = decode(img)
     if not detectedBarcodes:
         print("Error")
