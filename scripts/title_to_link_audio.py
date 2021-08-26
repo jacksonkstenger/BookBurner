@@ -13,7 +13,7 @@ def title_to_link_audio(url):
     try:
         url += ' audiobook'
         formatted_url = url.replace(' ','+')
-        url_to_search = rf"https://www.youtube.com/results?search_query={formatted_url}"
+        url_to_search = rf"https://www.youtube.com/results?search_query={formatted_url}&sp=EgIYAg%253D%253D"
         #with requests.Session() as s:
         #    resp = s.get(url_to_search)
         #    redirect_url = resp.history[1].url

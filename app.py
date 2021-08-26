@@ -67,15 +67,20 @@ def sms_reply():
         print(rf"AUDIO URL: {audio_url}", )
         if url is None:
             url == ""
-        
+        print('waddup')
         if (url == "") and (audio_url == ""):
+            print('JJ1')
             resp.message("I can't find a pdf of this title. Try including more details.")
         elif (url != "") and (audio_url == ""):
+            print('JJ2')
             resp.message("{}".format(url))
         elif (url == "") and (audio_url != ""):
+            print('JJ3')
             resp.message(rf"I can't find a pdf of this title. I did find this audio book: {audio_url}")
         else:
+            print('JJ4')
             resp.message(rf"{url} (audio version: {audio_url})")
+        print('goodbye')
         return str(resp)
 
     except TwilioRestException as e:
