@@ -75,12 +75,12 @@ def sms_reply():
         else:
             resp.message(rf"{url} (audio version: {audio_url})"
             
-        return str(resp)
+        return None#str(resp)
 
     except TwilioRestException as e:
         print(e)
         resp.message("I can't find a pdf of this title. Try including more details.")
-        return str(resp)
+        return None#str(resp)
 
 
 if __name__ == "__main__":
