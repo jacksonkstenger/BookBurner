@@ -3,15 +3,16 @@ from selenium.webdriver.common.keys import Keys
 import time
 import os
 import sys
-#import cv2
+###import cv2
 from pyzbar.pyzbar import decode
 import re
 import requests
-import PIL
+#import PIL
 sys.path.append('../data/')
 import numpy as np
 import urllib
-from skimage import io
+#from skimage import io
+import matplotlib.pyplot as plt
 
 def BarcodeReader(book_url):
     ###req = urllib.request.urlopen(book_url)
@@ -21,8 +22,9 @@ def BarcodeReader(book_url):
         page = s.get(book_url)
         with open('temp_img.jpg', 'wb') as f:
             f.write(page.content)
-    img = np.asarray(Image.open('temp_img.jpg'))
-    #img = io.imread(book_url)
+    #img = np.asarray(Image.open('temp_img.jpg'))
+    ##img = io.imread(book_url)
+    img = plt.imread('temp_img.jpg')
     detectedBarcodes = decode(img)
     if not detectedBarcodes:
         print("Error")
