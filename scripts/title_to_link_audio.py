@@ -34,7 +34,7 @@ def title_to_link_audio(url):
         #print(video_link1)
         video_link2 = video_link1[0].get_attribute("href")
         #print(video_link2)
-        final_video_link = rf"www.youtube.com/{video_link2}"
+        final_video_link = rf"{video_link2}"
         driver.close()
 
         return final_video_link

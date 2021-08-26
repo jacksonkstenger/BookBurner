@@ -40,7 +40,7 @@ def title_to_link(title):
     #print(soup.find_all('table'))
     table = soup.find_all('table')[2]
     
-    new_url = "I can't find this title."
+    new_url = ""#"I can't find this title."
     for e in table:
         try:
             file_type = e.find_all('td')[8].text
