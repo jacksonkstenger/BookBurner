@@ -15,7 +15,7 @@ import os
 sys.path.append('scripts/')
 
 from utils import send_text
-from title_to_link import title_to_link
+from title_to_link import title_to_link_old#title_to_link
 from image_to_title import image_to_title as image_to_title_og
 from image_to_title_barcode import image_to_title
 from title_to_link_audio import title_to_link_audio
