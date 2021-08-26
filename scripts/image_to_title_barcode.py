@@ -6,6 +6,8 @@ import sys
 #import cv2
 from pyzbar.pyzbar import decode
 import re
+import requests
+import PIL
 sys.path.append('../data/')
 import numpy as np
 import urllib
