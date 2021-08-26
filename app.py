@@ -52,9 +52,9 @@ def sms_reply():
             text = image_to_title(media_url)
             if text == None:
                 text = image_to_title_og(media_url)
-            if text == None:
-                resp.message("I can't find a pdf of this title. Try including more details.")
-                return str(resp)
+            #if text == None:
+            #    #resp.message("I can't find a pdf of this title. Try including more details.")
+            #    #return str(resp)
                 
 
         # Add a message
