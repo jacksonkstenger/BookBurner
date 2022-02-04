@@ -19,6 +19,8 @@ from title_to_link import title_to_link_old#title_to_link
 from image_to_title import image_to_title as image_to_title_og
 from image_to_title_barcode import image_to_title
 from title_to_link_audio import title_to_link_audio
+
+
 app = Flask(__name__)
 
 
@@ -33,7 +35,6 @@ def sms_reply():
     """Respond to texts with a custom response"""
 
     try:
-
         # Start our TwiML response
         resp = MessagingResponse()
 
@@ -48,13 +49,9 @@ def sms_reply():
 
         # If an image was attached, get the title of the book from the image
         if media_url is not None:
-            print("Here in the media url None condition")
             text = image_to_title(media_url)
-            print('zzz')
             if text == None:
                 text = image_to_title_og(media_url)
-            print('yyy')
-        print('text')
         
         # Add a message
         resp.message("Time to burn some books! Here's a free version of {}.".format(text))
@@ -68,28 +65,20 @@ def sms_reply():
             url == ""
         if audio_url is None:
             audio_url == ""
-        print('waddup')
-        print(url)
-        print(audio_url)
         #if (url == "") and (audio_url == ""):
         if (not url) and (not audio_url):
-            print('JJ1')
             resp.message("I can't find a pdf of this title. Try including more details.")
         elif (not not url) and (not audio_url):
-            print('JJ2')
             resp.message("{}".format(url))
         elif (not url) and (not not audio_url):
-            print('JJ3')
             resp.message(rf"I can't find a pdf of this title. I did find this link, it may be an audio book: {audio_url}")
         else:
-            print('JJ4')
             resp.message(rf"{url} (possible audio version: {audio_url})")
-        print('goodbye')
         return str(resp)
 
     except TwilioRestException as e:
         print(e)
-        resp.message("I can't find a pdf of this title. Try including more details.")
+        resp.message("I can't find a pdf of this title.")
         return str(resp)
     return None
 

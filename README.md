@@ -2,9 +2,6 @@
 
 ## How to Burn a Book:
 
-1) Text a photo or a title of a book
+1) Text the title of a book or an image of the cover/barcode to +1 (850) 771-4847
 2) Receive a pdf of the book
-3) Build a database of your books for future reference
-
-
 

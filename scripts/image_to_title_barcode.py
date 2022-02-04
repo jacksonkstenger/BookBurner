@@ -6,17 +6,15 @@ from selenium.webdriver.common.by import By
 import time
 import os
 import sys
-###import cv2
 from pyzbar.pyzbar import decode
 import re
 import requests
-#import PIL
 sys.path.append('../data/')
 import numpy as np
 import urllib
-#from skimage import io
 import matplotlib.pyplot as plt
 from isbntools.app import meta
+
 
 def BarcodeReader(book_url):
     ###req = urllib.request.urlopen(book_url)
@@ -42,6 +40,7 @@ def BarcodeReader(book_url):
     except:
         return None
 
+
 def BarcodeLookup(barcode):
     #DRIVER_PATH = os.environ.get('CHROMEDRIVER_PATH', None)
     ##DRIVER_PATH = r"C:\Users\Jackson\Downloads\chromedriver_win32\chromedriver.exe"
@@ -63,9 +62,7 @@ def BarcodeLookup(barcode):
         return result
     except:
         return None
-    
-    
-    
+
     
 def image_to_title(image_url):
     barcode = BarcodeReader(image_url)

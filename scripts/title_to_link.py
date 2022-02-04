@@ -17,13 +17,12 @@ import os
 def title_to_link(title):
 
     # If the google search returned a title with the word book, remove "book"
-    # if title[-4:] == "book":
-    #     title = title[:-5]
+    if title[-4:] == "book":
+        title = title[:-5]
     title = title.replace('cover','')
     title = title.replace('audiobook','')
     title = title.replace('book','')
-
-    print("Title2: {}".format(title))
+    
     url = "https://libgen.is/search.php?&"
     params = {
         'req': title,
@@ -31,19 +30,10 @@ def title_to_link(title):
         'sort': 'extension',
         'sortmode': 'DESC'
     }
-    print('a')
     url += urllib.parse.urlencode(params)
-    print('b')
     resp = requests.get(url)
-    print('c')
     soup = BeautifulSoup(resp.text, 'html.parser')
-    print('d')
-    #print(resp)
-    #print(resp.text)
-    print(soup)
-    #print(soup.find_all('table'))
     table = soup.find_all('table')[2]
-    print('e')
     new_url = ""#"I can't find this title."
     file_type_lst = ['pdf','epub']
     for e in table:
@@ -76,7 +66,6 @@ def title_to_link_old(title):
         title = title.replace('audiobook','')
         title = title.replace('book','')
         
-        print("Title2: {}".format(title))
         url = "https://libgen.is/search.php?&"
         params = {
             'req': title,
@@ -86,12 +75,12 @@ def title_to_link_old(title):
         }
         url += urllib.parse.urlencode(params)
         
-        
         driver = webdriver.Chrome(executable_path=DRIVER_PATH)
         
         # Open the website
         driver.get(url)
         print(str(driver.page_source)[:1000])
+
         # Click the link of the first pdf
         file_type_lst = ['pdf','epub','txt']
         
@@ -105,16 +94,18 @@ def title_to_link_old(title):
                     link = driver.find_element_by_xpath('/html/body/table[3]/tbody/tr[2]/td[3]/a[2]').get_attribute("href")
                     driver.get(link)
                     found = True
-                except:
-                    print('fail1')
+                except Exception as E:
+                    print('fail 1')
+                    print(E)
                 try:
                     element = EC.presence_of_element_located((By.XPATH, '/html/body/table[3]/tbody/tr[2]/td[3]/a'))
                     WebDriverWait(driver, timeout).until(element)
                     link = driver.find_element_by_xpath('/html/body/table[3]/tbody/tr[2]/td[3]/a').get_attribute('href')
                     driver.get(link)
                     found = True
-                except:
-                    print('fail2')
+                except Exception as E:
+                    print('fail 2')
+                    print(E)
                 if found:
                     break
         
@@ -122,12 +113,15 @@ def title_to_link_old(title):
         element = EC.presence_of_element_located((By.XPATH, '/html/body/table/tbody/tr[2]/td[3]/b/a'))
         WebDriverWait(driver, timeout).until(element)
         final_url = driver.find_element_by_xpath('/html/body/table/tbody/tr[2]/td[3]/b/a').get_attribute("href")#.click()
-        
         driver.close()
+
         return final_url
-    except:
+
+    except Exception as E:
         print('Weird error')
+        print(E)
         driver.close()
+
     return None
 
 if __name__ == "__main__":
