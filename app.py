@@ -1,4 +1,5 @@
 # Import Dependencies
+from flask import Flask, request, redirect
 from twilio.twiml.messaging_response import MessagingResponse
 from twilio.base.exceptions import TwilioRestException
 from selenium import webdriver
@@ -7,7 +8,6 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
-from flask import Flask, request, redirect
 import urllib.parse
 import time
 import sys
@@ -80,7 +80,6 @@ def sms_reply():
         print(e)
         resp.message("I can't find a pdf of this title.")
         return str(resp)
-    return None
 
 if __name__ == "__main__":
     app.run(debug=True, threaded=True)

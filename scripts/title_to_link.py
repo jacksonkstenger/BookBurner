@@ -45,7 +45,8 @@ def title_to_link(title):
                     print(link['href'])
                     if 'book' in link['href']:
                         book_code = link['href'].split('=')[1]
-                        new_url = "http://library.lol/main/" + book_code
+                        library_url = "http://library.lol/main/" + book_code
+                        new_url = requests.get(library_url).text.split("\">Cloudflare")[0].split("href=\"")[-1]
                 break
         except:
             pass
