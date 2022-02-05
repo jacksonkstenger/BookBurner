@@ -34,7 +34,7 @@ def title_to_link(title):
     resp = requests.get(url)
     soup = BeautifulSoup(resp.text, 'html.parser')
     table = soup.find_all('table')[2]
-    new_url = ""#"I can't find this title."
+    pdf_url = ""#"I can't find this title."
     file_type_lst = ['pdf','epub']
     for e in table:
         try:
@@ -46,12 +46,14 @@ def title_to_link(title):
                     if 'book' in link['href']:
                         book_code = link['href'].split('=')[1]
                         library_url = "http://library.lol/main/" + book_code
-                        new_url = requests.get(library_url).text.split("\">Cloudflare")[0].split("href=\"")[-1]
+                        print(f"library_url: {library_url}")
+                        pdf_url = requests.get(library_url).text.split("\">Cloudflare")[0].split("href=\"")[-1]
+                        print(f"pdf_url: {pdf_url}")
                 break
         except:
             pass
 
-    return new_url
+    return pdf_url
 
 
 def title_to_link_old(title):
