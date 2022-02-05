@@ -25,7 +25,8 @@ def title_to_link_audio(url):
         driver.get(url_to_search)
 
         # Get the title from Google's search box
-        video_link1 = driver.find_elements(By.XPATH, '//*[@id="video-title"]')
+        #video_link1 = driver.find_elements(By.XPATH, '//*[@id="video-title"]')
+        video_link1 = driver.find_elements(By.XPATH, '//*[@id="video-title"]/yt-formatted-string')
         video_link2 = video_link1[0].get_attribute("href")
         final_video_link = rf"{video_link2}"
         driver.close()
