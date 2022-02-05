@@ -71,6 +71,5 @@ def image_to_title(image_url):
 
 
 if __name__ == "__main__":
-    # url = "https://api.twilio.com/2010-04-01/Accounts/AC15abe67bd635f83f4fa678d17ccf9e6d/Messages/MM2731b3d74b95937e4caea55f86530858/Media/ME0b75de784bb7dd2b33d4e97ddc156ccd"
     url = "https://api.twilio.com/2010-04-01/Accounts/AC15abe67bd635f83f4fa678d17ccf9e6d/Messages/MMfae04ceb6882537e1d8a5b8e772074f7/Media/ME2e69eb7cb514cd0acea6e382cd810eed"
     print(image_to_title(url))

@@ -96,7 +96,6 @@ def title_to_link_old(title):
                     driver.get(link)
                     found = True
                 except Exception as E:
-                    print('fail 1')
                     print(E)
                 try:
                     element = EC.presence_of_element_located((By.XPATH, '/html/body/table[3]/tbody/tr[2]/td[3]/a'))
@@ -105,7 +104,6 @@ def title_to_link_old(title):
                     driver.get(link)
                     found = True
                 except Exception as E:
-                    print('fail 2')
                     print(E)
                 if found:
                     break
@@ -119,7 +117,6 @@ def title_to_link_old(title):
         return final_url
 
     except Exception as E:
-        print('Weird error')
         print(E)
         driver.close()
 
