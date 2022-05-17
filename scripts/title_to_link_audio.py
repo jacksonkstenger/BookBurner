@@ -18,6 +18,7 @@ def title_to_link_audio(url):
         # Using Chrome to access web
         DRIVER_PATH = os.environ.get('CHROMEDRIVER_PATH', None)
         #DRIVER_PATH = r"C:\Users\Jackson\Downloads\chromedriver_win32\chromedriver.exe"
+        print(DRIVER_PATH)
 
         driver = webdriver.Chrome(executable_path=DRIVER_PATH)
 
@@ -30,7 +31,8 @@ def title_to_link_audio(url):
         video_link2 = video_link1[0].get_attribute("href")
         final_video_link = rf"{video_link2}"
         driver.close()
-
+        print("final video link")
+        print(final_video_link)
         return final_video_link
 
     except:
